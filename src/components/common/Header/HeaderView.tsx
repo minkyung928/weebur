@@ -30,6 +30,11 @@ export default function HeaderView({
             onBlur={onBlur}
             value={inputValue}
             onChange={onChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit(e);
+              }
+            }}
           />
           {(!shrink || isFocused) && (
             <SearchButton type="submit">검색</SearchButton>
@@ -85,7 +90,7 @@ export const SearchInputWrapper = styled.div`
 
   &.shrink {
     max-width: 400px;
-    padding: 0 0.25rem;
+    padding: 0 1rem;
     background-color: transparent;
   }
 `;
