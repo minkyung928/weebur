@@ -23,7 +23,9 @@ export default function HeaderView({
         />
       </LogoContainer>
       <Form onSubmit={handleSubmit}>
-        <SearchInputWrapper className={shrink ? "shrink" : ""}>
+        <SearchInputWrapper
+        // className={shrink ? "shrink" : ""}
+        >
           <SearchInput
             placeholder="찾고 싶은 상품을 검색해보세요"
             onFocus={onFocus}
@@ -36,9 +38,9 @@ export default function HeaderView({
               }
             }}
           />
-          {(!shrink || isFocused) && (
-            <SearchButton type="submit">검색</SearchButton>
-          )}
+          {/* {(!shrink || isFocused) && ( */}
+          <SearchButton type="submit">검색</SearchButton>
+          {/* )} */}
         </SearchInputWrapper>
       </Form>
     </HeaderContainer>
