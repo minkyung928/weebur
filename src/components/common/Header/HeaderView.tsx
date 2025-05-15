@@ -1,16 +1,7 @@
+import { HeaderViewProps } from "@/types/products";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-
-interface Props {
-  shrink: boolean;
-  isFocused: boolean;
-  onFocus: () => void;
-  onBlur: () => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  inputValue: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 export default function HeaderView({
   shrink,
@@ -20,7 +11,7 @@ export default function HeaderView({
   handleSubmit,
   inputValue,
   onChange,
-}: Props) {
+}: HeaderViewProps) {
   return (
     <HeaderContainer>
       <LogoContainer href="/">

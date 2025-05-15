@@ -1,11 +1,6 @@
 import { useSearchParams } from "next/navigation";
 import * as S from "./SortOptions.style";
-
-interface SortOptionsProps {
-  sortBy: string;
-  order: string;
-  onClickSort: (newParams: Record<string, string | null>) => void;
-}
+import { SortOptionsProps } from "@/types/products";
 
 export default function SortOptions({
   sortBy,

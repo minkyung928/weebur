@@ -1,9 +1,6 @@
+import { SkeletonProductItemProps } from "@/types/products";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
-
-interface SkeletonProductItemProps {
-  isGridView: boolean;
-}
 
 export default function SkeletonPostType({
   isGridView,

@@ -1,36 +1,10 @@
 import * as S from "./ProductList.style";
 import SortOptions from "./SortOptions";
-import ProductItem, { Product } from "./ProductItem";
+import ProductItem from "./ProductItem";
 import Image from "next/image";
 import { createQueryString } from "@/utils/url";
 import { useRouter } from "next/navigation";
-import { InfiniteData } from "@tanstack/react-query";
-
-export interface ProductProps {
-  pageParams: number[];
-  pages: ProductListResponse[];
-}
-
-export interface ProductListResponse {
-  products: Product[];
-  limit: number;
-  skip: number;
-  total: number;
-  pageParams: number[];
-  pages: ProductListResponse[];
-}
-
-interface Props {
-  data: InfiniteData<ProductListResponse>;
-  hasNextPage: boolean;
-  isGridView: boolean;
-  isFetchingNextPage: boolean;
-  ref: (node?: Element | null) => void;
-  sortBy: string;
-  order: string;
-  pathname: string;
-  searchParams: URLSearchParams;
-}
+import { ProductListViewProps } from "@/types/products";
 
 export default function ProductListView({
   data,
@@ -42,7 +16,7 @@ export default function ProductListView({
   order,
   pathname,
   searchParams,
-}: Props) {
+}: ProductListViewProps) {
   const router = useRouter();
 
   return (
