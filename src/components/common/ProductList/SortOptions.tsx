@@ -1,21 +1,22 @@
+import { useSearchParams } from "next/navigation";
 import * as S from "./SortOptions.style";
 
 interface SortOptionsProps {
-  inputValue: string;
   sortBy: string;
   order: string;
   onClickSort: (newParams: Record<string, string | null>) => void;
 }
 
 export default function SortOptions({
-  inputValue,
   sortBy,
   order,
   onClickSort,
 }: SortOptionsProps) {
+  const searchParams = useSearchParams();
   const isRecommended = !sortBy && !order;
   const isPopular = sortBy === "rating" && order === "desc";
 
+  const currentSearchParams = searchParams.get("q") ?? "";
   return (
     <S.Wrapper>
       <S.Rating
@@ -28,7 +29,11 @@ export default function SortOptions({
       <S.Rating
         $active={isPopular}
         onClick={() =>
-          onClickSort({ q: inputValue, sortBy: "rating", order: "desc" })
+          onClickSort({
+            q: currentSearchParams || null,
+            sortBy: "rating",
+            order: "desc",
+          })
         }
       >
         인기순

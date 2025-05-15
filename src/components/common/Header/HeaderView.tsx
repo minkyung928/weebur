@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -6,6 +7,9 @@ interface Props {
   isFocused: boolean;
   onFocus: () => void;
   onBlur: () => void;
+  handleSubmit: (e: React.FormEvent) => void;
+  inputValue: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function HeaderView({
@@ -13,21 +17,29 @@ export default function HeaderView({
   isFocused,
   onFocus,
   onBlur,
+  handleSubmit,
+  inputValue,
+  onChange,
 }: Props) {
   return (
     <HeaderContainer>
-      <LogoContainer>
-        <Logo href="/">Weebur</Logo>
+      <LogoContainer href="/">
+        <Image
+          src="https://cdn.weebur.com/assets/bi/logo.svg"
+          width={124}
+          height={23}
+          alt="logo"
+        />
       </LogoContainer>
-      <Form>
-        <SearchInputWrapper>
+      <Form onSubmit={handleSubmit}>
+        <SearchInputWrapper className={shrink ? "shrink" : ""}>
           <SearchInput
-            className={shrink ? "" : "shrink"}
-            // value={inputValue}
-            // onChange={(e) => setInputValue(e.target.value)}
+            // className={shrink ? "shrink" : ""}
             placeholder="찾고 싶은 상품을 검색해보세요"
             onFocus={onFocus}
             onBlur={onBlur}
+            value={inputValue}
+            onChange={onChange}
           />
           {(!shrink || isFocused) && (
             <SearchButton type="submit">검색</SearchButton>
@@ -50,17 +62,11 @@ export const HeaderContainer = styled.div`
   border-bottom: 1px solid #eaeaea;
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
   display: flex;
   justify-content: flex-start;
   width: 100%;
-`;
-
-export const Logo = styled(Link)`
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -72,7 +78,8 @@ export const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 80%;
+  width: 100%;
+  height: 50px;
   max-width: 600px;
   display: flex;
   justify-content: center;
@@ -85,26 +92,30 @@ export const SearchInputWrapper = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
+
+  &.shrink {
+    max-width: 400px; /* shrink일 때 줄어들게 하고 싶다면 */
+    padding: 0 0.25rem;
+    background-color: #f9f9f9;
+  }
 `;
 
 export const SearchInput = styled.input`
-  flex: 1;
+  /* flex: 1; */
   transition: all 0.3s ease;
   border: none;
   outline: none;
-
   background: transparent;
+  width: 100%;
 
   &.shrink {
-    width: 100%;
-    height: 80px;
     font-size: 0.875rem;
     border-color: #ccc;
 
-    &:focus {
+    /* &:focus {
       width: 100%;
       height: 56px;
-    }
+    } */
   }
 `;
 

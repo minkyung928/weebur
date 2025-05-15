@@ -1,5 +1,5 @@
-import Image from "next/image";
+import ProductListContainer from "@/components/common/ProductList/ProductListContainer";
 
 export default function Home() {
-  return <div>q</div>;
+  return <ProductListContainer />;
 }
