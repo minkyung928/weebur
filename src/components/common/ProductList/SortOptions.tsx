@@ -1,6 +1,6 @@
 import { useSearchParams } from "next/navigation";
 import * as S from "./SortOptions.style";
-import { SortOptionsProps } from "@/types/products";
+import { SortOptionsProps } from "@/types/products.types";
 
 export default function SortOptions({
   sortBy,

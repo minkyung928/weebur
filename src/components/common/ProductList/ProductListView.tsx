@@ -4,7 +4,7 @@ import ProductItem from "./ProductItem";
 import Image from "next/image";
 import { createQueryString } from "@/utils/url";
 import { useRouter } from "next/navigation";
-import { ProductListViewProps } from "@/types/products";
+import { ProductListViewProps } from "@/types/products.types";
 
 export default function ProductListView({
   data,

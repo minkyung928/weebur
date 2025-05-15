@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import MessageIcon from "../../icons/MessageIcon";
-import { ProductItemProps } from "@/types/products";
+import { ProductItemProps } from "@/types/products.types";
 
 export default function ProductItem({ product, isGridView }: ProductItemProps) {
   return (

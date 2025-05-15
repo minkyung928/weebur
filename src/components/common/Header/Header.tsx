@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import HeaderView from "./HeaderView";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -48,7 +48,9 @@ export default function Header() {
       onBlur={() => setIsFocused(false)}
       handleSubmit={handleSubmit}
       inputValue={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+        setInputValue(e.target.value)
+      }
     />
   );
 }
