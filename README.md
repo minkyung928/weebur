@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weebur List 과제
 
-## Getting Started
+Next.js 14(App Router) 기반의 제품 리스트 과제 프로젝트입니다.  
+검색, 정렬, 무한스크롤 기능이 포함되어 있으며, 뷰 모드(grid/list)를 랜덤으로 설정하여 사용자 경험을 실험합니다.
 
-First, run the development server:
+## 🛠 기능 요약
+
+- 🔍 **검색**: 헤더에서 검색어 입력 시 제품 필터링
+- ⭐ **정렬**: 추천순(기본), 인기순(별점 내림차순) 정렬 기능
+- 🔁 **무한스크롤**: Intersection Observer를 활용한 페이징 처리
+- 🧱 **그리드 / 리스트 뷰 전환**: 랜덤 뷰 설정 및 24시간 유지(localStorage)
+- 🦴 **로딩 중 Skeleton UI** 표시
+- ❌ **결과 없음 / 더 이상 없음** 메시지 출력
+
+## 🔧 실행 방법
+
+### 1. 패키지 설치
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 개발 서버 실행
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. 접속
 
-## Learn More
+```bash
+http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 디렉토리 구조
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+├── app/
+│   └── page.tsx              # 메인 엔트리
+├── components/
+│   └── common/
+│       ├── ProductList/      # 주요 컴포넌트
+│       ├── Skeleton/
+│       └── PageContainer.tsx
+├── hooks/
+│   └── useViewMode.ts        # localStorage 기반 viewMode 관리
+├── utils/
+│   └── url.ts                # queryString 유틸 함수
+├── styles/
+├── public/
+└── README.md
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 주요 기술 스택
 
-## Deploy on Vercel
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **React Query** (@tanstack/react-query)
+- **styled-components**
+- **react-intersection-observer**
+- **react-loading-skeleton**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 참고 API
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- DummyJSON: https://dummyjson.com/docs/products
+
+## 🙋‍♀️ 기타 참고사항
+
+- 검색 API(`/products/search`)는 정렬 파라미터(`sortBy`, `order`)를 지원하지 않아 정렬은 기본 API에서만 동작합니다.
+- 무한 스크롤은 각 페이지별 데이터를 누적해 보여줍니다.
