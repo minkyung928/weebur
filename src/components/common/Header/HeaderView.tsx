@@ -25,7 +25,6 @@ export default function HeaderView({
       <Form onSubmit={handleSubmit}>
         <SearchInputWrapper className={shrink ? "shrink" : ""}>
           <SearchInput
-            // className={shrink ? "shrink" : ""}
             placeholder="찾고 싶은 상품을 검색해보세요"
             onFocus={onFocus}
             onBlur={onBlur}
@@ -85,14 +84,13 @@ export const SearchInputWrapper = styled.div`
   }
 
   &.shrink {
-    max-width: 400px; /* shrink일 때 줄어들게 하고 싶다면 */
+    max-width: 400px;
     padding: 0 0.25rem;
-    background-color: #f9f9f9;
+    background-color: transparent;
   }
 `;
 
 export const SearchInput = styled.input`
-  /* flex: 1; */
   transition: all 0.3s ease;
   border: none;
   outline: none;
@@ -102,11 +100,11 @@ export const SearchInput = styled.input`
   &.shrink {
     font-size: 0.875rem;
     border-color: #ccc;
+  }
 
-    /* &:focus {
-      width: 100%;
-      height: 56px;
-    } */
+  &:focus {
+    width: 100%;
+    height: 56px;
   }
 `;
 
@@ -121,18 +119,27 @@ export const SearchButton = styled.button`
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
-  height: 32px;
-  padding: 0 12px;
-  font-size: 0.875rem;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 1000px;
-  cursor: pointer;
 
+  border: none;
   transition: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre;
+  gap: 2px;
+  padding: 0px 16px;
+  height: 35px;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(18, 82, 242);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+  border-radius: 999px;
+  width: 65px;
 
   &:hover {
-    background-color: #333;
+    opacity: 0.7;
   }
 `;
