@@ -1,21 +1,19 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function Header() {
-  const [shrink, setShrink] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+interface Props {
+  shrink: boolean;
+  isFocused: boolean;
+  onFocus: () => void;
+  onBlur: () => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShrink(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+export default function HeaderView({
+  shrink,
+  isFocused,
+  onFocus,
+  onBlur,
+}: Props) {
   return (
     <HeaderContainer>
       <LogoContainer>
@@ -25,9 +23,11 @@ export default function Header() {
         <SearchInputWrapper>
           <SearchInput
             className={shrink ? "" : "shrink"}
+            // value={inputValue}
+            // onChange={(e) => setInputValue(e.target.value)}
             placeholder="찾고 싶은 상품을 검색해보세요"
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
           {(!shrink || isFocused) && (
             <SearchButton type="submit">검색</SearchButton>
